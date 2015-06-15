@@ -1,0 +1,19 @@
+{
+  "name": "todo-angularjs",
+  "version": "1.0.0",
+  "homepage": "https://github.com/madodela/todo-angularjs",
+  "authors": [
+    "Loli Delgado <madodela@gmail.com>"
+  ],
+  "description": "Example application",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.15"
+  }
+}
