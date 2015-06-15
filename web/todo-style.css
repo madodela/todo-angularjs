@@ -1,0 +1,134 @@
+.task-list {
+	position: absolute;
+	border: 1px solid #e7e7e7;
+	width: 33%;
+	box-shadow: 0px 2px 5px rgba(180,180,178,0.25);
+	padding: 10px;
+	left: 30%;
+	font-family: "Helvetica";
+}
+
+.task-list .task-container {
+	list-style: none;
+	padding: 0px 10px;
+}
+
+.task-list .task-container .clean-completed{
+	font-size: 14px;
+	font-style: italic;
+	float: right;
+	text-decoration: underline;
+	cursor: pointer;
+	color: rgba(233, 90, 91, 0.7);
+}
+
+.task-list .task-container .clean-completed:hover {
+	color: rgba(233, 90, 91, 1);
+}
+
+.task-list .task-container .task {
+	font-size: 14px;
+	height: 30px;
+	padding: 5px;
+}
+
+.task-list .task-container .task .task-priority{
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+	vertical-align: super;
+}
+
+.task-list .task-container .task .regular-checkbox {
+	-webkit-appearance: none;
+	background-color: #fafafa;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	padding: 7px;
+	border-radius: 5px;
+	display: inline-block;
+	position: relative;
+	outline: none;
+}
+
+.task-list .task-container .task .regular-checkbox:hover {
+	cursor: pointer;
+	background-color: rgba(233, 236, 238, 0.62);
+}
+
+.task-list .task-container .task .regular-checkbox:active, .regular-checkbox:checked:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+.task-list .task-container .task .regular-checkbox:checked {
+	background-color: #e9ecee;
+	border: 1px solid #adb8c0;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+	color: #99a1a7;
+}
+
+.task-list .task-container .task .regular-checkbox:checked:after{
+	content: '\2714';
+	font-size: 13px;
+	position: absolute;
+	top: -2px;
+	left: 2px;
+	color: #5c9c33;
+}
+
+.task-list .task-container .task .regular-checkbox:checked + a {
+	text-decoration: line-through;
+}
+
+.task-list .center{
+	text-align: center;
+}
+
+
+.task-list .add-form .add-task {
+	width: 75%;
+	background-color: #fff;
+	padding: 6px;
+	border-radius: 2px;
+	font-size: 15px;
+	font-style: italic;
+	border-radius: 3px 0px 0px 3px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	margin-left: 5%;
+}
+
+.task-list .add-form .add-button {
+	background-color: rgba(0, 0, 0, 0);
+	padding: 8px 6px 6px 7px;
+	border-radius: 0px 3px 3px 0px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	margin-left: -5px;
+	width: 15%;
+	cursor: pointer;
+	outline: none;
+}
+
+.task-list .add-form .add-button:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+.task-list .filters {
+	padding: 10px;
+	font-size: 14px;
+	background-color: rgba(0,0,0,.05);
+	margin: 10px;
+	border-radius: 3px;
+	height: 30px;
+}
+.task-list .filters .radio-filters {
+	float: left;
+}
+
+.task-list .filters .select-filter {
+	float: right;
+}
+
+a {
+	text-decoration: initial;
+	vertical-align: super;
+	color: initial;
+}
