@@ -7,7 +7,6 @@
 4. Now you can see it in http://localhost:3000
 
 ##Running front-end
-When using services from the backend, this steps are requiered:
 1. Go to */web*
 2. Run `bower install`
 3. Run `npm install http-server && http-server`
