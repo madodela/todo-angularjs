@@ -20,30 +20,23 @@
 			</header>
 
 			<!-- Testing angular-->
-			<p>You have {{ 2 + 1 }} tasks in total</p>
 
-			<ul class="task-container">
-				<li class="clean-completed">Clean completed tasks</li><br>
-				<li class="task">
-					<input type="checkbox" class="regular-checkbox">
-					<a href="task-detail.html">Read books
-						<span>@Jun 6th, 2015</span>
+			<ul class="task-container" ng-controller="TodoListCtrl">
+			<p>You have {{ tasks.length }} tasks in total</p>
+				<!-- <li class="clean-completed">Clean completed tasks</li><br> -->
+				<li class="task" ng-repeat="task in tasks">
+					<input type="checkbox" class="regular-checkbox" ng-checked="{{task.isChecked}}">
+
+					<a href="sections/task-detail.html">{{ task.title }}
+						<span>@{{ task.overDue }}</span>
 					</a>
-					<div class="task-priority" style="background-color: #FDF100;"></div>
-				</li>
-				<li class="task">
-					<input type="checkbox" class="regular-checkbox">
-					<a href="task-detail.html">Run 20 minutes
-						<span>@Jun 3rd, 2015</span>
-					</a>
-					<div class="task-priority" style="background-color: #569401;"></div>
-				</li>
-				<li class="task">
-					<input type="checkbox" class="regular-checkbox">
-					<a href="task-detail.html">Have my dinner
-						<span>@Jun 2nd, 2015</span>
-					</a>
-					<div class="task-priority" style="background-color: #FDF100;"></div>
+					<!-- Pending: Set color based on priority
+						Colors are:
+							low: #569401
+							medium: #FDF100
+							high: #DE1920
+					 -->
+					<div class="task-priority" style="background-color: #FDF100;">{{ task.priority }}</div>
 				</li>
 			</ul>
 
@@ -70,6 +63,10 @@
 
 		<!-- AngularJS Modules -->
 		<script src="app.js"></script>
+
+		<!-- Controller for now -->
+		<script src="todo-list-ctrl.js"></script>
+
 	</body>
 
 </html>
