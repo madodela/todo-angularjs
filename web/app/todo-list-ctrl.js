@@ -28,13 +28,29 @@ angular.module('TodoApp')
 			}
 		];
 
-		var isChecked = function () {
+		var setMissingPropierties = function () {
 			var len = $scope.tasks.length, 
 			i;
 			for (i = len; i > 0; i--) {
+				// Set task status
 				$scope.tasks[i - 1].isChecked = $scope.tasks[i - 1].status === 'F';
+				// Set background color
+				$scope.tasks[i - 1].backColor = checkPriority($scope.tasks[i - 1].priority);
 			}
 		};
+
+		var checkPriority = function (priority) {
+			// low by default
+			var color = '#569401';
+			switch (priority) {
+				case 'H':
+					color = '#DE1920';
+					break;
+				case 'M':
+					color = '#FDF100';
+			};
+			return color;
+		};
 		
-		isChecked();
+		setMissingPropierties();
 	}]);

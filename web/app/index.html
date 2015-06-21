@@ -19,24 +19,17 @@
 				<hr>
 			</header>
 
-			<!-- Testing angular-->
-
 			<ul class="task-container" ng-controller="TodoListCtrl">
+
 			<p>You have {{ tasks.length }} tasks in total</p>
 				<!-- <li class="clean-completed">Clean completed tasks</li><br> -->
-				<li class="task" ng-repeat="task in tasks">
+				<li class="task" ng-repeat="task in tasks | filter: status">
 					<input type="checkbox" class="regular-checkbox" ng-checked="{{task.isChecked}}">
 
 					<a href="sections/task-detail.html">{{ task.title }}
 						<span>@{{ task.overDue }}</span>
 					</a>
-					<!-- Pending: Set color based on priority
-						Colors are:
-							low: #569401
-							medium: #FDF100
-							high: #DE1920
-					 -->
-					<div class="task-priority" style="background-color: #FDF100;">{{ task.priority }}</div>
+					<div class="task-priority" style="background-color: {{ task.backColor }}"></div>
 				</li>
 			</ul>
 
