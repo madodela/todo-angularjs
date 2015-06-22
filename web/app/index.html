@@ -23,7 +23,8 @@
 
 			<p>You have {{ tasks.length }} tasks in total</p>
 				<!-- <li class="clean-completed">Clean completed tasks</li><br> -->
-				<li class="task" ng-repeat="task in tasks | filter: status">
+				<!-- Using build-in filter to show task based on user selection in filters section -->
+				<li class="task" ng-repeat="task in tasks | filter: {status: showByStatus}">
 					<input type="checkbox" class="regular-checkbox" ng-checked="{{task.isChecked}}">
 
 					<a href="sections/task-detail.html">{{ task.title }}
@@ -40,9 +41,9 @@
 
 			<div class="filters">
 				<div class="radio-filters">
-					<input type="radio" checked name="status">All
-					<input type="radio" name="status">Pending
-					<input type="radio" name="status">Finished	
+					<input type="radio" ng-model="showByStatus" name="status">All
+					<input type="radio" ng-model="showByStatus" name="status" value="P">Pending
+					<input type="radio" ng-model="showByStatus" name="status" value="F">Finished	
 				</div>
 				<div class="select-filter">
 					Order by:
