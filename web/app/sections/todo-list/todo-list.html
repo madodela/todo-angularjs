@@ -14,7 +14,10 @@
 			<input type="checkbox" class="regular-checkbox" ng-checked="{{task.isChecked}}">
 
 			<a href="sections/task-detail.html">{{ task.title }}
-				<span>@{{ task.overDue }}</span>
+				<span>
+					<span ng-if="!!task.overDue">@</span>
+					{{ task.overDue }}
+				</span>
 			</a>
 			<div class="task-priority" style="background-color: {{ task.backColor }}"></div>
 		</li>

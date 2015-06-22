@@ -1,32 +1,14 @@
 angular.module('TodoApp')
 	// Dependency injection to make $scope available
-	.controller('TodoListCtrl', ['$scope', function ($scope) {
-		$scope.tasks = [
-			{
-				id: 1,
-				title: 'Read books',
-				description: "'Clean Code', '7 languages in 7 weeks', ...",
-				overDue: '06/06/15',
-				status: 'P',
-				priority: 'M'
-			},
-			{
-				id: 2,
-				title: 'Run 20 minutes',
-				description: '',
-				overDue: '03/06/15',
-				status: 'F',
-				priority: 'L'
-			},
-			{
-				id: 3,
-				title: 'Have my dinner',
-				description: 'Some quesadillas and milk',
-				overDue: '17/06/2015',
-				status: 'P',
-				priority: 'H'
-			}
-		];
+	.controller('TodoListCtrl', ['$scope', '$http', function ($scope, $http) {
+		
+		function init () {
+			//using http service for get information
+			$http.get('http://localhost:3000/tasks').success(function (response) {
+				$scope.tasks = response.tasks;
+				setMissingPropierties();
+			});
+		};
 
 		var setMissingPropierties = function () {
 			var len = $scope.tasks.length, 
@@ -52,5 +34,5 @@ angular.module('TodoApp')
 			return color;
 		};
 		
-		setMissingPropierties();
+		init();
 	}]);
