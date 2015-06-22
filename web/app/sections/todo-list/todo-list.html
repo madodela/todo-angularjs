@@ -1,0 +1,42 @@
+<div class="task-list">
+
+	<header class="center">
+		<h1>My Todo List</h1>
+		<hr>
+	</header>
+
+	<ul class="task-container" ng-controller="TodoListCtrl">
+
+		<p>You have {{ tasks.length }} tasks in total</p>
+			<!-- <li class="clean-completed">Clean completed tasks</li><br> -->
+			<!-- Using build-in filter to show task based on user selection in filters section -->
+		<li class="task" ng-repeat="task in tasks | filter: {status: showByStatus}">
+			<input type="checkbox" class="regular-checkbox" ng-checked="{{task.isChecked}}">
+
+			<a href="sections/task-detail.html">{{ task.title }}
+				<span>@{{ task.overDue }}</span>
+			</a>
+			<div class="task-priority" style="background-color: {{ task.backColor }}"></div>
+		</li>
+	</ul>
+
+	<div class="add-form">
+		<input type="search" class="add-task" placeholder="Add a task...">
+		<button type="submit" class="add-button">Add</button>
+	</div>
+
+	<div class="filters">
+		<div class="radio-filters">
+			<input type="radio" ng-model="showByStatus" name="status">All
+			<input type="radio" ng-model="showByStatus" name="status" value="P">Pending
+			<input type="radio" ng-model="showByStatus" name="status" value="F">Finished	
+		</div>
+		<div class="select-filter">
+			Order by:
+			<select>
+				<option>Date</option>
+				<option>Priority</option>
+			</select>
+		</div>
+	</div>		
+</div>
