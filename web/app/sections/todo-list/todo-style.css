@@ -39,6 +39,18 @@
 	vertical-align: super;
 }
 
+.high-priority {
+	background-color: #DE1920;
+}
+
+.medium-priority {
+	background-color: #FDF100;
+}
+
+.low-priority {
+	background-color: #569401;
+}
+
 .task-list .task-container .task .regular-checkbox {
 	-webkit-appearance: none;
 	background-color: #fafafa;

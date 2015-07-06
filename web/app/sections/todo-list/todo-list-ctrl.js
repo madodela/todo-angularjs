@@ -1,38 +1,51 @@
 angular.module('TodoApp')
 	// Dependency injection to make $scope available
 	.controller('TodoListCtrl', ['$scope', '$http', function ($scope, $http) {
-		
+
+		$scope.onTitle = false;
+
 		function init () {
 			//using http service for get information
 			$http.get('http://localhost:3000/tasks').success(function (response) {
 				$scope.tasks = response.tasks;
-				setMissingPropierties();
 			});
 		};
 
-		var setMissingPropierties = function () {
-			var len = $scope.tasks.length, 
-			i;
-			for (i = len; i > 0; i--) {
-				// Set task status
-				$scope.tasks[i - 1].isChecked = $scope.tasks[i - 1].status === 'F';
-				// Set background color
-				$scope.tasks[i - 1].backColor = checkPriority($scope.tasks[i - 1].priority);
-			}
+		function cleanInputs() {
+			$scope.title = '';
+			$scope.description = '';
+			$scope.overDue = '';
+			$scope.priority = '';
 		};
 
-		var checkPriority = function (priority) {
+		$scope.setPriorityColor = function (priority) {
 			// low by default
-			var color = '#569401';
+			var priorityClass = 'low-priority';
 			switch (priority) {
 				case 'H':
-					color = '#DE1920';
+					priorityClass = 'high-priority';
 					break;
 				case 'M':
-					color = '#FDF100';
+					priorityClass = 'medium-priority';
 			};
-			return color;
+			return priorityClass;
 		};
+
+		$scope.addTask = function() {
+			var task = { 
+				"title": $scope.title, 
+				"description": $scope.description, 
+				"overDue": $scope.overDue, 
+				"status": "P", 
+				"priority": $scope.priority
+			};
+
+			$http({method: 'POST', url:'http://localhost:3000/tasks', headers: {'Content-Type': 'application/json'}, data: task}).success(function(data, status, headers, config) {
+				task.idTask = data.insertedId;
+				$scope.tasks.push(task);
+				cleanInputs();
+			});
+		}
 		
 		init();
 	}]);

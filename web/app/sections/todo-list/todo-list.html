@@ -5,41 +5,52 @@
 		<hr>
 	</header>
 
-	<ul class="task-container" ng-controller="TodoListCtrl">
+	<div>
+		<ul class="task-container">
 
-		<p>You have {{ tasks.length }} tasks in total</p>
-			<!-- <li class="clean-completed">Clean completed tasks</li><br> -->
-			<!-- Using build-in filter to show task based on user selection in filters section -->
-		<li class="task" ng-repeat="task in tasks | filter: {status: showByStatus}">
-			<input type="checkbox" class="regular-checkbox" ng-checked="{{task.isChecked}}">
+			<p>You have {{ tasks.length }} tasks in total</p>
+				<li class="clean-completed" ng-if="showByStatus==='F'">Clean completed tasks</li><br>
+				<!-- Using build-in filter to show task based on user selection in filters section -->
+			<li class="task" ng-repeat="task in tasks | filter: {status: showByStatus}">
+				<input type="checkbox" class="regular-checkbox" ng-model="task.status" ng-true-value="'F'">
 
-			<a href="sections/task-detail.html">{{ task.title }}
-				<span>
-					<span ng-if="!!task.overDue">@</span>
-					{{ task.overDue }}
-				</span>
-			</a>
-			<div class="task-priority" style="background-color: {{ task.backColor }}"></div>
-		</li>
-	</ul>
+				<a href="task-detail.html">{{ task.title }}
+					<span>
+						<span ng-if="!!task.overDue">@</span>
+						{{ task.overDue | date}}
+					</span>
+				</a>
+				<div class="task-priority" ng-class="setPriorityColor(task.priority)"></div>
+			</li>
+		</ul>
 
-	<div class="add-form">
-		<input type="search" class="add-task" placeholder="Add a task...">
-		<button type="submit" class="add-button">Add</button>
+		<div class="add-form">
+			<form ng-submit="addTask()">
+				<input type="text" name="title" class="add-task" placeholder="Title" ng-model="title" ng-click="onTitle = !onTitle">
+				<input type="text" name="description" class="add-task" placeholder="Description" ng-model="description" ng-show="onTitle">
+				<input type="date" name="date" class="add-task" placeholder="Date" ng-model="overDue" ng-show="onTitle">
+				<select name="priority" class="add-task" ng-model="priority" ng-show="onTitle">
+					<option value="H">High</option>
+					<option value="M">Medium</option>
+					<option value="L">Low</option>
+				</select>
+				<button type="submit" class="add-button">Add</button>
+			</form>
+		</div>
+
+		<div class="filters">
+			<div class="radio-filters">
+				<input type="radio" ng-model="showByStatus" name="status">All
+				<input type="radio" ng-model="showByStatus" name="status" value="P">Pending
+				<input type="radio" ng-model="showByStatus" name="status" value="F">Finished	
+			</div>
+			<div class="select-filter">
+				Order by:
+				<select>
+					<option>Date</option>
+					<option>Priority</option>
+				</select>
+			</div>
+		</div>		
 	</div>
-
-	<div class="filters">
-		<div class="radio-filters">
-			<input type="radio" ng-model="showByStatus" name="status">All
-			<input type="radio" ng-model="showByStatus" name="status" value="P">Pending
-			<input type="radio" ng-model="showByStatus" name="status" value="F">Finished	
-		</div>
-		<div class="select-filter">
-			Order by:
-			<select>
-				<option>Date</option>
-				<option>Priority</option>
-			</select>
-		</div>
-	</div>		
 </div>
