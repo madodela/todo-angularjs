@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var db = require('../dbConnection');
+var express = require('express'),
+router = express.Router(),
+db = require('../dbConnection');
 
 router.param('idTask', function(req, res, next){
 	var idTask = req.params.idTask;
-	//The id must to be a number
+	//The id must be a number
 	req.idTask = isNaN(idTask) ? null : idTask;
 	next();
 });
@@ -23,11 +23,11 @@ router.route('/')
 	.post(function(req, res){		
 		db.run("INSERT INTO Task (title, description, overDue, status, priority) VALUES(?,?,?,?,?)",
 			[req.body.title, req.body.description, req.body.overDue,
-			req.body.status, req.body.priority], function(err){
+			req.body.status, req.body.priority], function(err, info){
 				if(err){
 					res.status(400).end();
 				} else {
-					res.send("Inserted");
+					res.json({success:true, insertedId: this.lastID});
 				}	
 			});
 	});

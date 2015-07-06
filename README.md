@@ -3,7 +3,7 @@
 ##Running front-end
 1. Go to */web*
 2. Run `bower install`
-3. Run `npm install http-server && http-server`
+3. Run `npm install http-server -g && http-server`
 4. You can see the app runing in http://localhost:8080
 
 ##Running back-end
