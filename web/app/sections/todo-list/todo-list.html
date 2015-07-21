@@ -12,9 +12,9 @@
 				<li class="clean-completed" ng-if="showByStatus==='F'">Clean completed tasks</li><br>
 				<!-- Using build-in filter to show task based on user selection in filters section -->
 			<li class="task" ng-repeat="task in tasks | filter: {status: showByStatus}">
-				<input type="checkbox" class="regular-checkbox" ng-model="task.status" ng-true-value="'F'">
+				<input type="checkbox" class="regular-checkbox" ng-model="task.status" ng-true-value="'F'" ng-click="updateStatus(task)">
 
-				<a href="task-detail.html">{{ task.title }}
+				<a ui-sref="task({id:{{task.idTask}}})">{{ task.title }}
 					<span>
 						<span ng-if="!!task.overDue">@</span>
 						{{ task.overDue | date}}

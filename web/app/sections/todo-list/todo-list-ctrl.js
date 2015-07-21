@@ -19,9 +19,11 @@ angular.module('TodoApp')
 		};
 
 		$scope.setPriorityColor = function (priority) {
-			// low by default
-			var priorityClass = 'low-priority';
+			var priorityClass = '';
 			switch (priority) {
+				case 'L':
+					priorityClass = 'low-priority';
+					break;
 				case 'H':
 					priorityClass = 'high-priority';
 					break;
@@ -46,6 +48,17 @@ angular.module('TodoApp')
 				cleanInputs();
 			});
 		}
-		
+
+		$scope.updateStatus = function (task) {
+			var status = '';
+			status = task.status || 'P';
+			var obj = {
+				status: status
+			};
+			console.log(obj);
+
+			$http({method: 'POST', url:'http://localhost:3000/tasks/' + task.idTask, headers: {'Content-Type': 'application/json'}, data: obj});
+		};
+
 		init();
 	}]);
