@@ -1,0 +1,37 @@
+<div class="details-container">
+	<div class="status inline">
+		Status:
+		<div class="status-check">
+			<input type="checkbox" ng-model="detail.info.statusin" id="status-check">
+			<label for="status-check"></label>
+		</div>
+		
+	</div>
+	<div class="due-date inline">
+		Due date:
+		<div>
+			<label ng-class="{hidden: !!!detail.info.overDue}">{{detail.info.overDue | date:shortDate}}</label>
+			<input type="date" placeholder="Select due date..." ng-class="{hidden: !!detail.info.overDue}" ng-model="detail.newDate">
+		</div>
+	</div>
+	<div class="priority inline">
+		Priority:
+		<div>
+			<input type="radio" name="priority" ng-model="detail.info.priority" ng-checked="detail.info.priority === 'L'" style="background-color: #569401;" value="L">
+			<input type="radio" name="priority" ng-model="detail.info.priority" ng-checked="detail.info.priority === 'M'" style="background-color: #FDF100;" value="M">
+			<input type="radio" name="priority" ng-model="detail.info.priority" ng-checked="detail.info.priority === 'H'" style="background-color: #DE1920;" value="H">
+		</div>
+	</div>
+	<header>
+		<h1>{{detail.info.title}}</h1>
+	</header>
+	<div>
+		<strong>Description: </strong>
+		<p ng-class="{hidden: !!!detail.info.description}">{{detail.info.description}}</p>
+		<textarea placeholder="Add a description..." ng-model="detail.newDescription" ng-class="{hidden: !!detail.info.description}"></textarea>
+	</div>
+
+	<button ng-click="detail.saveChanges()">Save changes</button>
+	<br>
+	<a ui-sref="todoList" class="pull-left link">Home</a>
+</div>

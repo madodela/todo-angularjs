@@ -1,6 +1,6 @@
 // Create application module
 
-angular.module('TodoApp', ['ui.router'])
+angular.module('TodoApp', ['ui.router', 'TaskDetail'])
 
 // A little difference
 
@@ -19,4 +19,4 @@ angular.module('TodoApp', ['ui.router'])
 			  templateUrl: "app/sections/todo-list/todo-list.html", //view 
 			  controller: 'TodoListCtrl' //controller of the view
 			});
-		});
+	});

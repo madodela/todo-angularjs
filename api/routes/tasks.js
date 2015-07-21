@@ -53,8 +53,17 @@ router.route('/:idTask')
 	})
 	.post(function(req, res){
 		if(req.idTask){
-			var keys = Object.keys(req.body);
-			db.run('UPDATE task SET '+keys[0]+' = ? WHERE idTask = ?', [req.body[keys[0]] ,req.idTask], function(err) {
+			var obj = req.body,
+				keys = Object.keys(obj), 
+				cadena = '';
+			//utilizar la funcion para formar la cadena atributo=valor
+			for(var i = 0, len = keys.length; i < len; i++) {
+					cadena += keys[i] + "='" + obj[keys[i]] + "'";
+					if(i !== len - 1) {
+						cadena += ',';
+					}
+				}
+			db.run('UPDATE task SET ' + cadena + ' WHERE idTask = ?', [req.idTask], function(err) {
 				if(err){
 					res.status(400).end();	
 				} else {
